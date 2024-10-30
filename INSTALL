@@ -1,0 +1,86 @@
+INSTALLATION
+
+  This is a two step process.  You should have a text editor at hand,
+  along with access to the WordPress database and a browser.  This
+  pertains to Blogger API Client, version 0.1 and up.
+
+
+  Step 1: Add the Blogger API Client database table.
+
+  From the command line, execute the following command
+
+	% mysql -u <user> <database> [-p] < bac-data.sql
+
+  Your system may vary; you may not need a password (the '-p' portion).
+  I don't know your machine.  Check in your wp-config.php file if you've
+  forgotten these parameters.
+
+
+  Step 2: Move the plug-in file, activate.
+
+  Move the bac/ directory to your wp-content/plugins directory.  Then
+  move bac/bac.php down directly into the wp-content/plugins directory.
+
+  Edit it and find the configuration section right below all the
+  plugin information.  It looks like this:
+
+   // You must fill out these parameters for your Blogger API account before
+   // the plugin will activate properly.
+   $bac_username   = "yourusername";
+   $bac_password   = "yourpassword";
+   $bac_server     = "hostname";      // e.g., www.blogger.com
+   $bac_path       = "/service/path"; // e.g., /api
+
+  Change the settings according to your account and the Blogger API
+  service you intend to use; it won't work unless you fill in all of the
+  correct configuration information.
+
+  Browse over to http://yoursite.example.org/wp-admin/plugins.php and
+  find the Blogger API Client plugin.  Hit 'Activate,' and you're ready
+  to go.
+
+  [CONDITIONAL]
+  Your service may require a key, and you may want to specify which blog
+  amongst several under your username; these two configuration variables
+  will help you do that.
+
+    $bac_key      = "";  // Blogger key, 0213456789ABCDEF
+    $bac_blogid   = "";  // Blog ID if you have several
+
+
+  [optional] Step 3:
+
+  You can post entries only from certain categories.  If you don't
+  care about this function, skip this step.
+
+  In the administrative interface, find or create categories that
+  you'd like to use and remember the numerical ID associated with
+  each.
+
+  Find this line in bac.php, under the previous configuration options.
+
+   // example using IDs 1 and 2: $bac_category = array("1", "2");
+   $bac_category = array();
+
+  As in the commented example, add your desired IDs to the array.
+  Now only those posts in the categories you designated will be
+  cross posted.
+
+
+  [optional] Step 4: Enable urlparse support
+
+  When cross posting, your non-absolute URL's may break (those that don't
+  start with 'http://').  To filter content such that all links are
+  transformed into absolute URL's, download the urlparse plug-in
+  (http://ryanlee.org/software/wp/urlparse/) and activate it.  This is not
+  bundled with BAC because of licensing constraints.  As a plug-in, it does
+  not actively do anything, it merely provides functions that other code
+  can call upon.
+
+  Open up bac.php in your editor and find the following two commented
+  lines:
+
+    //!!!uncomment for urlparse support
+    //$content = urlparse_external_links($content, $ID);
+
+  and remove the two slashes from the beginning of the second line.

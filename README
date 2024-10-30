@@ -1,0 +1,32 @@
+FILES
+
+ - README
+ - INSTALL
+ - bac-data.sql
+ - ixr.bloggerclient.php
+ - bac.php
+
+ABOUT
+
+  Blogger API Client is a WordPress plugin that gives you the ability to add,
+  edit, and delete your Blogger API service posts directly from WordPress.
+  This is often called 'cross-posting.'  You need an account on whatever
+  service you intend to post to to use this plugin.
+
+  Blogger API Client's home on the web can be found at
+    http://ryanlee.org/software/wp/bac/
+  It was written for part of the MIT CSAIL Decentralized Information Group
+  infrastructure.  DIG can be found at
+    http://dig.csail.mit.edu/
+
+  Consult INSTALL for directions on how to install this plugin.
+
+  Please inform me of any global configuration variables it would help you
+  to have.
+  
+  This code is licensed under the Modified BSD license; see the
+  bac.php file for the full text.
+
+
+Ryan Lee
+http://ryanlee.org/
